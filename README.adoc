@@ -1,5 +1,10 @@
 = Wechat-token-ccs
 
+== Development environment
+
+- temurin-jdk 17
+- Gradle 8.5
+
 == Spring Boot
 
 === build

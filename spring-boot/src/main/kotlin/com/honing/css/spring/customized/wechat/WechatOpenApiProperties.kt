@@ -2,8 +2,8 @@ package com.honing.css.spring.customized.wechat
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "wechat")
-open class WechatOpenApiProperties{
+@ConfigurationProperties(prefix = "wechat.api")
+open class WechatOpenApiProperties {
   private var baseUri = "https://api.weixin.qq.com"
 
   private val miniProgram = MiniProgram()

@@ -1,6 +1,6 @@
 server.port: 18180
 
-server.servlet.context-path: /wts
+server.servlet.context-path: /ccs
 
 ### thymeleaf
 spring.thymeleaf.cache: false
@@ -14,7 +14,7 @@ spring.thymeleaf.mode: HTML
 
 --- ## wechat
 
-wechat.base-uri: https://api.weixin.qq.com
-wechat.mini-program.access-token: "/cgi-bin/token?grant_type={grantType}&appid={appid}&secret={secret}"
-wechat.mini-program.stable-access-token: /cgi-bin/stable_token
+wechat.api.base-uri: https://api.weixin.qq.com
+wechat.api.mini-program.access-token: "/cgi-bin/token?grant_type={grantType}&appid={appid}&secret={secret}"
+wechat.api.mini-program.stable-access-token: /cgi-bin/stable_token
 

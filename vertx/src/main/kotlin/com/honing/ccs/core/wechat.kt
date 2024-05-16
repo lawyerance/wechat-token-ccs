@@ -26,7 +26,7 @@ fun token(vertx: io.vertx.core.Vertx, appId: String, secret: String): Token? {
     )
     // Send a GET request
     client.getAbs(uriTemplate).send().onSuccess { response ->
-      if (response.statusCode() === 200) {
+      if (response.statusCode() == 200) {
         // Decode the body as a json object
         val body: JsonObject = response.bodyAsJsonObject()
         cache.put(appId, Token(body.getString("access_token"), body.getLong("expires_in")))

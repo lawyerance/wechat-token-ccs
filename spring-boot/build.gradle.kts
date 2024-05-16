@@ -53,9 +53,6 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-cache")
   implementation("org.springframework.retry:spring-retry")
 
-  compileOnly("org.projectlombok:lombok:1.18.32")
-  annotationProcessor("org.projectlombok:lombok:1.18.32")
-
   implementation("com.github.ben-manes.caffeine:caffeine:3.1.8")
 
   implementation("org.springframework.boot:spring-boot-starter-data-redis")
@@ -69,11 +66,8 @@ val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = "17"
 
 tasks.withType<BootRun> {
-  systemProperty(
-    "spring.config.additional-location",
-    "file://${projectDir}/src/main/resources/application-cluster.yaml"
-  )
-//    args("--spring.config.additional-location=file://${projectDir}/src/main/resources/application-standalone.yaml")
+//  systemProperty("spring.config.additional-location", "file://${projectDir}/src/main/resources/application-cluster.yaml")
+  args("--spring.config.additional-location=file://${projectDir}/src/main/resources/application-standalone.yaml")
 
 }
 
