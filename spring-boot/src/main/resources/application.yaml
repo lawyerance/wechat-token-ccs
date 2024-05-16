@@ -1,0 +1,20 @@
+server.port: 18180
+
+server.servlet.context-path: /wts
+
+### thymeleaf
+spring.thymeleaf.cache: false
+spring.thymeleaf.prefix: classpath:/templates/
+#编码
+spring.thymeleaf.encoding: UTF-8
+#模板后缀
+spring.thymeleaf.suffix: .html
+#模板
+spring.thymeleaf.mode: HTML
+
+--- ## wechat
+
+wechat.base-uri: https://api.weixin.qq.com
+wechat.mini-program.access-token: "/cgi-bin/token?grant_type={grantType}&appid={appid}&secret={secret}"
+wechat.mini-program.stable-access-token: /cgi-bin/stable_token
+

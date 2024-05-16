@@ -1,5 +1,42 @@
 = Wechat-token-ccs
 
+== Spring Boot
+
+=== build
+
+[source,bash]
+----
+./gradlew :spring-boot clean relase -x test
+----
+
+=== run
+
+This project provide two run mode： standalone and cluster
+
+==== standalone mode
+
+单机模式下，使用caffeine进行本地缓存，配置缓存相关信息使用配置文件##application-standalone.yaml##
+
+start script
+
+[source,bash]
+----
+sh bin/startup.sh -m standalone
+----
+
+=== cluster mode
+
+集群模式下，使用redis作为分布式缓存，配置缓存相关信息使用配置文件##application-cluster.yaml##
+
+启动脚本
+
+[source,bash]
+----
+sh bin/startup.sh -m cluster
+----
+
+== vertx
+
 image:https://img.shields.io/badge/vert.x-4.5.7-purple.svg[link="https://vertx.io"]
 
 This application was generated using http://start.vertx.io
@@ -7,19 +44,25 @@ This application was generated using http://start.vertx.io
 == Building
 
 To launch your tests:
-```
-./gradlew clean test
-```
+
+[source,bash]
+----
+./gradlew :vertx clean test
+----
 
 To package your application:
-```
+
+[source,bash]
+----
 ./gradlew clean assemble
-```
+----
 
 To run your application:
-```
+
+[source,bash]
+----
 ./gradlew clean run
-```
+----
 
 == Help
 

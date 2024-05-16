@@ -1,0 +1,26 @@
+{
+  "groups": [
+    {
+      "name": "wechat.mini-program",
+      "type": "com.zhouwen.tuanwujie.wts.customized.wechat.WechatOpenApiProperties$MiniProgram"
+    }
+  ],
+  "properties": [
+    {
+      "name": "wechat.mini-program.access-token",
+      "type": "java.lang.String",
+      "description": "getAccessToken",
+      "sourceType": "com.zhouwen.tuanwujie.wts.customized.wechat.WechatOpenApiProperties$MiniProgram",
+      "defaultValue": "/cgi-bin/token?grant_type={grantType}&appid={appid}&secret={secret}"
+    },
+    {
+      "name": "wechat.mini-program.stable-access-token",
+      "type": "java.lang.String",
+      "description": "getStableAccessToken",
+      "sourceType": "com.zhouwen.tuanwujie.wts.customized.wechat.WechatOpenApiProperties$MiniProgram",
+      "defaultValue": "/cgi-bin/stable_token"
+    }
+  ],
+  "hints": [
+  ]
+}

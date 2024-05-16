@@ -24,7 +24,7 @@ class MainVerticle : AbstractVerticle() {
     router.get("/cgi-bin/token").respond { ctx ->
       val we: WechatExecutor = WechatExecutor(
         Collections.singletonMap(
-          "wx752f87b6340e0e52", "80d374818a4152f71030ea21f54e3cff"
+          "1", "2"
         ), cache
       );
       println(we.getToken("wx752f87b6340e0e52"))
