@@ -59,14 +59,14 @@ To package your application:
 
 [source,bash]
 ----
-./gradlew clean assemble
+./gradlew :vertx clean assemble
 ----
 
 To run your application:
 
 [source,bash]
 ----
-./gradlew clean run
+./gradlew :vertx clean run
 ----
 
 == Help
