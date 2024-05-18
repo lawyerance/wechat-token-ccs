@@ -1,25 +1,23 @@
-buildscript {
+subprojects {
+  buildscript {
 
 
-  repositories {
-    mavenLocal()
-    maven {
-      url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+    repositories {
+      mavenLocal()
+      maven {
+        url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+      }
+      maven {
+        url = uri("https://plugins.gradle.org/m2/")
+      }
+      maven {
+        url = uri("https://maven.aliyun.com/repository/public")
+      }
+      mavenCentral()
     }
-    maven {
-      url = uri("https://plugins.gradle.org/m2/")
-    }
-    maven {
-      url = uri("https://maven.aliyun.com/repository/public")
-    }
-    mavenCentral()
+
   }
 
-}
+  apply(plugin = ("java-library"))
 
-plugins {
-
-  id("java-library")
-  kotlin("jvm") version "1.7.21"
-//  kotlin("jvm").version("1.8.21")
 }

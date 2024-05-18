@@ -19,7 +19,6 @@ buildscript {
 
 plugins {
   application
-  id("com.github.johnrengelman.shadow") version "7.1.2"
   kotlin("jvm") version "1.7.21"
 //  kotlin("jvm").version("1.8.21")
 }
@@ -39,15 +38,7 @@ repositories {
 val vertxVersion = "4.5.7"
 val junitJupiterVersion = "5.9.1"
 
-val mainVerticleName = "com.honing.ccs.MainVerticle"
-val launcherClassName = "io.vertx.core.Launcher"
 
-val watchForChange = "src/**/*"
-val doOnChange = "${projectDir}/gradlew classes"
-
-application {
-  mainClass.set(launcherClassName)
-}
 
 dependencies {
   implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
@@ -65,11 +56,35 @@ dependencies {
   // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
   implementation("ch.qos.logback:logback-classic:1.5.6")
 
+  implementation("io.netty:netty-all:4.1.108.Final")
+  implementation("io.netty:netty-resolver-dns-native-macos:4.1.108.Final")
+  implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+
+
 }
 
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = "17"
 
+
+val mainVerticleName = "com.honing.ccs.MainVerticle"
+val launcherClassName = "io.vertx.core.Launcher"
+
+val watchForChange = "${projectDir}/src/**/*"
+val doOnChange = "${projectDir}/gradlew classes"
+
+tasks.withType<Jar> {
+  manifest {
+    attributes["Main-Class"] = "io.vertx.core.Launcher" //改为Launcher
+    attributes["Main-Verticle"] = "io.example.MainVerticle" //新增Main Verticle属性，对应MainVerticle类
+  }
+
+}
+
+application {
+  mainClass.set(launcherClassName)
+}
 
 tasks.withType<Test> {
   useJUnitPlatform()
@@ -81,4 +96,14 @@ tasks.withType<Test> {
 
 tasks.compileJava {
   options.encoding = "UTF-8"
+}
+
+tasks.withType<JavaExec> {
+  args = listOf(
+    "run",
+    mainVerticleName,
+    "--redeploy=$watchForChange",
+    "--launcher-class=$launcherClassName",
+    "--on-redeploy=$doOnChange"
+  )
 }
