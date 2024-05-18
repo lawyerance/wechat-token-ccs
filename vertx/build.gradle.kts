@@ -107,3 +107,27 @@ tasks.withType<JavaExec> {
     "--on-redeploy=$doOnChange"
   )
 }
+
+
+
+tasks.register<Zip>("release") {
+  dependsOn("jar")
+  //压缩包名称
+  archiveFileName = "${project.name}.zip"
+
+  into("bin") {
+    from("${projectDir}/scripts")
+    setFileMode(755)
+  }
+  into("libs") {
+    from(configurations.runtimeClasspath)
+
+    from(layout.getBuildDirectory().dir("libs"))
+  }
+
+  into("config") {
+    from("${projectDir}/src/main/resources/")
+    include("*.yaml", "*.xml")
+  }
+
+}

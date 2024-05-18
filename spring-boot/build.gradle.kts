@@ -78,17 +78,40 @@ tasks.withType<Test> {
   }
 }
 
-//tasks.withType<JavaExec> {
-//  args = listOf(
-//    "run",
-//    mainVerticleName,
-//    "--redeploy=$watchForChange",
-//    "--launcher-class=$launcherClassName",
-//    "--on-redeploy=$doOnChange"
-//  )
-//}
+tasks.withType<Jar> {
+  manifest {
+    attributes["Implementation-Title"] = project.name
+    attributes["Implementation-Version"] = project.version
+  }
 
+  // Remove `plain` postfix from jar file name
+  archiveClassifier.set("")
+
+  exclude("*.yaml", "*.xml")
+}
 
 tasks.compileJava {
   options.encoding = "UTF-8"
+}
+
+tasks.register<Zip>("release") {
+  dependsOn("jar")
+  //压缩包名称
+  archiveFileName = "${project.name}.zip"
+
+  into("bin") {
+    from("${projectDir}/scripts")
+    setFileMode(755)
+  }
+  into("libs") {
+    from(configurations.runtimeClasspath)
+
+    from(layout.getBuildDirectory().dir("libs"))
+  }
+
+  into("config") {
+    from("${projectDir}/src/main/resources/")
+    include("*.yaml", "*.xml")
+  }
+
 }
